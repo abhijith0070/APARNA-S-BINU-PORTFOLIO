@@ -1,0 +1,108 @@
+/* =======================================================
+   CUSTOM CURSOR — Spring Physics & Graphical Reaction
+   Purely graphical circular ring + inner dot (No text)
+   Adapted for Aparna S Binu architecture portfolio
+   ======================================================= */
+
+/* ── Hide system cursor on fine pointer devices ── */
+@media (pointer: fine) {
+  body.has-custom-cursor,
+  body.has-custom-cursor a,
+  body.has-custom-cursor button,
+  body.has-custom-cursor [data-cursor],
+  body.has-custom-cursor [role="button"],
+  body.has-custom-cursor .project-row,
+  body.has-custom-cursor .ct-row,
+  body.has-custom-cursor .ct-social-card {
+    cursor: none !important;
+  }
+
+  /* Keep native cursor for text inputs */
+  body.has-custom-cursor input,
+  body.has-custom-cursor textarea,
+  body.has-custom-cursor select {
+    cursor: text !important;
+  }
+}
+
+/* ── Cursor Container (single element moved by JS) ── */
+.cc-cursor-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100000;
+  pointer-events: none;
+  will-change: transform;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  /* Size doesn't matter — children are absolutely positioned */
+  width: 0;
+  height: 0;
+}
+
+/* ── Outer Spring Ring ── */
+.cc-ring-circle {
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  /* Center using margins — NOT transform — so JS scale() doesn't shift center */
+  margin-left: -19px;
+  margin-top: -19px;
+  border-radius: 9999px;
+  border: 1.5px solid var(--ink, #202020);
+  background-color: transparent;
+  transform-origin: center center;
+  transition:
+    border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    border-width 0.2s ease,
+    transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, border-color;
+}
+
+.cc-ring-circle.is-hover {
+  border-color: var(--terracotta, #b85c43);
+  border-width: 1.5px;
+  background-color: transparent;
+}
+
+/* ── Inner Dot (always centered inside ring) ── */
+.cc-dot-circle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  /* Center using margins — same origin as ring */
+  margin-left: -3px;
+  margin-top: -3px;
+  border-radius: 50%;
+  background-color: var(--ink, #202020);
+  transition: background-color 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s ease;
+  /* Ensure dot is above ring */
+  z-index: 1;
+}
+
+.cc-dot-circle.is-hover {
+  background-color: var(--terracotta, #b85c43);
+  transform: scale(1.15);
+}
+
+/* ── Mobile / Touch: completely disable ── */
+@media (pointer: coarse), (hover: none) {
+  .cc-cursor-container {
+    display: none !important;
+  }
+
+  body.has-custom-cursor,
+  body.has-custom-cursor * {
+    cursor: auto !important;
+  }
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .cc-cursor-container,
+  .cc-dot-circle,
+  .cc-ring-circle {
+    transition: none !important;
+  }
+}
+

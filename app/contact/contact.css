@@ -1,0 +1,560 @@
+/* ============================================
+   CONTACT PAGE — /contact
+   Editorial Architectural Contact Archive
+   Classes prefixed with ct- to avoid collisions.
+   Uses existing design tokens from :root.
+   ============================================ */
+
+/* ---- Scroll reveal (reused pattern from about.css) ---- */
+
+.ct-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ct-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children delays */
+.ct-reveal-d1 { transition-delay: 0.08s; }
+.ct-reveal-d2 { transition-delay: 0.16s; }
+.ct-reveal-d3 { transition-delay: 0.24s; }
+.ct-reveal-d4 { transition-delay: 0.32s; }
+.ct-reveal-d5 { transition-delay: 0.40s; }
+
+/* ============================================
+   PAGE CONTAINER
+   ============================================ */
+
+.ct-page {
+  padding-top: 48px;
+  padding-bottom: 0;
+}
+
+/* ============================================
+   HERO — Large Typographic Opening
+   ============================================ */
+
+.ct-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: end;
+  padding-bottom: 80px;
+  border-bottom: 1px solid var(--line);
+}
+
+.ct-hero-left {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.ct-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  font-weight: 600;
+  margin: 0;
+}
+
+.ct-headline {
+  font-family: 'Calisto MT', Georgia, 'Times New Roman', serif;
+  font-size: clamp(52px, 7.5vw, 110px);
+  font-weight: 400;
+  line-height: 0.88;
+  letter-spacing: -0.055em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.ct-headline em {
+  color: var(--terracotta);
+  font-style: italic;
+}
+
+.ct-hero-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-self: end;
+  padding-bottom: 8px;
+}
+
+.ct-hero-description {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--muted);
+  margin: 0;
+  max-width: 380px;
+}
+
+.ct-hero-location {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 28px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.ct-hero-location svg {
+  color: var(--terracotta);
+  flex-shrink: 0;
+}
+
+/* ============================================
+   CONTACT INDEX — Editorial Archive Grid
+   ============================================ */
+
+.ct-index-section {
+  padding: 72px 0 0;
+}
+
+.ct-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 0;
+}
+
+.ct-section-num {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--terracotta);
+  font-weight: 600;
+}
+
+.ct-section-label {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  font-weight: 700;
+  margin: 0;
+}
+
+/* ============================================
+   CONTACT ROWS — Architectural Index Pattern
+   ============================================ */
+
+.ct-row {
+  display: grid;
+  grid-template-columns: 42px 140px 1fr 24px;
+  gap: 16px;
+  align-items: center;
+  min-height: 96px;
+  padding: 0 0 0 4px;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  transition: background 0.3s ease, padding 0.3s ease;
+}
+
+.ct-row::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: var(--terracotta);
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ct-row:hover::before,
+.ct-row:focus-visible::before {
+  width: 100%;
+}
+
+.ct-row:hover,
+.ct-row:focus-visible {
+  padding-left: 12px;
+}
+
+.ct-row-num {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--terracotta);
+  font-weight: 600;
+}
+
+.ct-row-type {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.3s ease;
+}
+
+.ct-row:hover .ct-row-type,
+.ct-row:focus-visible .ct-row-type {
+  color: var(--ink);
+}
+
+.ct-row-value {
+  font-family: 'Calisto MT', Georgia, 'Times New Roman', serif;
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  transition: color 0.3s ease;
+}
+
+.ct-row:hover .ct-row-value,
+.ct-row:focus-visible .ct-row-value {
+  color: var(--terracotta);
+}
+
+.ct-row-arrow {
+  color: var(--line);
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ct-row:hover .ct-row-arrow,
+.ct-row:focus-visible .ct-row-arrow {
+  color: var(--terracotta);
+  transform: translate(2px, -2px);
+}
+
+/* ============================================
+   SOCIAL INDEX — Separate Grid
+   ============================================ */
+
+.ct-social-section {
+  padding: 72px 0 0;
+}
+
+.ct-social-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+
+.ct-social-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 36px 28px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+.ct-social-card:last-child {
+  border-right: none;
+}
+
+.ct-social-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--terracotta);
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ct-social-card:hover::after,
+.ct-social-card:focus-visible::after {
+  width: 100%;
+}
+
+.ct-social-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.ct-social-icon {
+  width: 28px;
+  height: 28px;
+  color: var(--ink);
+  transition: color 0.3s ease;
+}
+
+.ct-social-card:hover .ct-social-icon,
+.ct-social-card:focus-visible .ct-social-icon {
+  color: var(--terracotta);
+}
+
+.ct-social-num {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+.ct-social-name {
+  font-family: 'Calisto MT', Georgia, 'Times New Roman', serif;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  transition: color 0.3s ease;
+}
+
+.ct-social-card:hover .ct-social-name,
+.ct-social-card:focus-visible .ct-social-name {
+  color: var(--terracotta);
+}
+
+.ct-social-handle {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  transition: color 0.3s ease;
+}
+
+.ct-social-card:hover .ct-social-handle,
+.ct-social-card:focus-visible .ct-social-handle {
+  color: var(--ink);
+}
+
+.ct-social-arrow {
+  color: var(--line);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.ct-social-card:hover .ct-social-arrow,
+.ct-social-card:focus-visible .ct-social-arrow {
+  color: var(--terracotta);
+  transform: translate(2px, -2px);
+}
+
+/* ============================================
+   VISUAL ANCHOR — Large Typographic Element
+   ============================================ */
+
+.ct-visual-section {
+  padding: 100px 0 120px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ct-visual-composition {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.ct-visual-text {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.ct-visual-large-num {
+  font-family: 'Calisto MT', Georgia, 'Times New Roman', serif;
+  font-size: clamp(120px, 16vw, 220px);
+  font-weight: 400;
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+  color: var(--line);
+  user-select: none;
+  margin: 0;
+}
+
+.ct-visual-quote {
+  font-family: 'Calisto MT', Georgia, 'Times New Roman', serif;
+  font-size: clamp(24px, 3vw, 38px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin: 0;
+  max-width: 460px;
+}
+
+.ct-visual-quote em {
+  color: var(--terracotta);
+  font-style: italic;
+}
+
+.ct-visual-right {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-left: 40px;
+  border-left: 1px solid var(--line);
+}
+
+.ct-visual-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ct-visual-detail-label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  font-weight: 600;
+}
+
+.ct-visual-detail-value {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.ct-visual-detail-value a {
+  color: var(--muted);
+  transition: color 0.25s ease;
+}
+
+.ct-visual-detail-value a:hover {
+  color: var(--terracotta);
+}
+
+/* ============================================
+   TERRACOTTA BLOCK — Architectural Accent
+   ============================================ */
+
+.ct-accent-block {
+  position: absolute;
+  right: -4vw;
+  bottom: 40px;
+  width: clamp(80px, 10vw, 140px);
+  height: clamp(160px, 20vw, 280px);
+  background: var(--terracotta);
+  opacity: 0.12;
+  z-index: 0;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 960px) {
+  .ct-hero {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding-bottom: 60px;
+  }
+
+  .ct-hero-right {
+    padding-bottom: 0;
+  }
+
+  .ct-row {
+    grid-template-columns: 36px 110px 1fr 20px;
+    gap: 12px;
+    min-height: 80px;
+  }
+
+  .ct-social-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ct-social-card {
+    border-right: none;
+    padding: 28px 0;
+  }
+
+  .ct-visual-composition {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .ct-visual-right {
+    padding-left: 0;
+    border-left: none;
+    border-top: 1px solid var(--line);
+    padding-top: 32px;
+  }
+
+  .ct-accent-block {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .ct-page {
+    padding-top: 32px;
+  }
+
+  .ct-headline {
+    font-size: clamp(44px, 12vw, 72px);
+  }
+
+  .ct-row {
+    grid-template-columns: 32px 1fr;
+    gap: 8px;
+    min-height: 72px;
+    padding: 16px 0 16px 4px;
+  }
+
+  .ct-row-type {
+    display: none;
+  }
+
+  .ct-row-arrow {
+    display: none;
+  }
+
+  .ct-row-value {
+    font-size: 18px;
+  }
+
+  .ct-social-card {
+    padding: 22px 0;
+  }
+
+  .ct-social-name {
+    font-size: 19px;
+  }
+
+  .ct-visual-section {
+    padding: 60px 0 80px;
+  }
+
+  .ct-visual-large-num {
+    font-size: clamp(80px, 22vw, 140px);
+  }
+
+  .ct-visual-quote {
+    font-size: clamp(20px, 5.5vw, 30px);
+  }
+
+  .ct-index-section,
+  .ct-social-section {
+    padding-top: 48px;
+  }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .ct-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .ct-row::before,
+  .ct-social-card::after {
+    transition: none;
+  }
+}
