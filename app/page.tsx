@@ -11,6 +11,7 @@ const projects = [
     year: '2026',
     image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=85',
     alt: 'Warm modern house framed by trees',
+    href: '#contact',
   },
   {
     number: '02',
@@ -19,6 +20,7 @@ const projects = [
     year: '2025',
     image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=85',
     alt: 'Quiet interior with a sculptural staircase',
+    href: '#contact',
   },
   {
     number: '03',
@@ -27,6 +29,7 @@ const projects = [
     year: '2025',
     image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85',
     alt: 'Light-filled communal interior',
+    href: '#contact',
   },
   {
     number: '04',
@@ -35,6 +38,7 @@ const projects = [
     year: '2024',
     image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=85',
     alt: 'Minimal interior with natural materials',
+    href: '#contact',
   },
 ]
 
@@ -76,17 +80,53 @@ export default function Page() {
           <div className="work-layout">
             <div className="project-list">
               {projects.map((project) => (
-                <a className="project-row" href="#contact" key={project.number} data-cursor="view" onMouseEnter={() => setActiveProject(project)} onFocus={() => setActiveProject(project)}>
+                <a
+                  className="project-row"
+                  href={project.href}
+                  key={project.number}
+                  data-cursor="view"
+                  onMouseEnter={() => setActiveProject(project)}
+                  onFocus={() => setActiveProject(project)}
+                  aria-label={`${project.number} ${project.title} — ${project.category} (${project.year})`}
+                >
+                  {/* Mobile-only architectural project card image */}
+                  <div className="project-card-image-wrap">
+                    <img
+                      className="project-card-image"
+                      src={project.image}
+                      alt={project.alt}
+                      loading="lazy"
+                    />
+                  </div>
+
                   <span className="project-number">{project.number}</span>
-                  <span className="project-details"><strong>{project.title}</strong><small>{project.category}</small></span>
+                  <div className="project-details">
+                    <strong>
+                      <span>{project.title}</span>
+                      <span className="project-mobile-arrow" aria-hidden="true">↗</span>
+                    </strong>
+                    <small>{project.category}</small>
+                  </div>
                   <span className="project-year">{project.year}</span>
                   <span className="project-arrow" aria-hidden="true">↗</span>
                 </a>
               ))}
             </div>
-            <div className="project-preview" aria-live="polite" data-cursor="view">
-              <img src={activeProject.image} alt={activeProject.alt} />
-              <p>{activeProject.title} <span>{activeProject.number}</span></p>
+
+            {/* Desktop sticky preview with clickable link */}
+            <div className="project-preview" aria-live="polite">
+              <a
+                className="project-preview-link"
+                href={activeProject.href}
+                data-cursor="view"
+                aria-label={`View ${activeProject.title}`}
+              >
+                <img src={activeProject.image} alt={activeProject.alt} />
+                <p>
+                  <span>{activeProject.title}</span>
+                  <span>{activeProject.number} ↗</span>
+                </p>
+              </a>
             </div>
           </div>
         </section>

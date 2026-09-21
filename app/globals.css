@@ -364,6 +364,20 @@ h1 em {
   color: var(--terracotta);
 }
 
+.project-preview-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.project-card-image-wrap,
+.project-mobile-arrow,
+.mobile-nav-meta,
+.mobile-nav-footer,
+.nav-item-num {
+  display: none;
+}
+
 .contact {
   padding-bottom: 120px;
 }
@@ -424,37 +438,147 @@ h1 em {
 
 @media (max-width: 760px) {
   .site-header {
-    min-height: 62px;
-    padding: 0 6vw;
+    min-height: 60px;
+    padding: 0 5vw;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .wordmark {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    white-space: nowrap;
+    max-width: calc(100vw - 90px);
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .menu-toggle {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-height: 44px;
+    min-width: 44px;
+    padding: 10px 0 10px 16px;
+    border: 0;
+    background: none;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink);
+    cursor: pointer;
     position: relative;
-    z-index: 12;
+    z-index: 102;
+    transition: color 0.2s ease;
+  }
+
+  .menu-toggle:hover,
+  .menu-toggle:focus-visible {
+    color: var(--terracotta);
   }
 
   .main-nav {
-    display: none;
+    display: flex;
     position: fixed;
-    inset: 62px 0 0;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 25px;
-    padding: 12vh 8vw;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: calc(100dvh - 60px);
     background: var(--paper);
-    font-family: Georgia, serif;
-    font-size: 42px;
-    letter-spacing: -.04em;
-    text-transform: none;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
+    padding: 28px 6vw 36px;
+    z-index: 101;
+    border-top: 1px solid var(--line);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0.25s;
+    pointer-events: none;
   }
 
   .main-nav.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+
+  .mobile-nav-meta {
     display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 20px;
+  }
+
+  .mobile-nav-meta span:last-child {
+    color: var(--muted);
+  }
+
+  .main-nav a {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+    font-family: 'Calisto MT', Georgia, 'Times New Roman', serif;
+    font-size: clamp(28px, 8vw, 38px);
+    letter-spacing: -0.02em;
+    text-transform: none;
+    color: var(--ink);
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+
+  .nav-item-num {
+    display: inline-block;
+    font-family: ui-monospace, monospace, Arial;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--terracotta);
+    transform: translateY(-3px);
+  }
+
+  .nav-item-text {
+    flex: 1;
+  }
+
+  .main-nav a:hover,
+  .main-nav a:focus-visible,
+  .main-nav a.is-active,
+  .main-nav a[aria-current="page"] {
+    color: var(--terracotta);
+    transform: translateX(4px);
   }
 
   .main-nav a::after {
     display: none;
+  }
+
+  .mobile-nav-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: auto;
+    padding-top: 28px;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
   }
 
   .page-shell {
@@ -518,24 +642,113 @@ h1 em {
 
   .work-layout {
     display: block;
-    padding: 65px 0 0;
+    padding: 50px 0 0;
   }
 
   .project-preview {
     display: none;
   }
 
+  .project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
   .project-row {
-    min-height: 112px;
-    grid-template-columns: 32px 1fr 42px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-height: auto;
+    padding: 0 0 28px;
+    border-top: 0;
+    border-bottom: 1px solid var(--line);
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--ink);
+    transition: opacity 0.2s ease;
+  }
+
+  .project-row:hover,
+  .project-row:active {
+    padding-left: 0;
+  }
+
+  .project-row:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .project-card-image-wrap {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background-color: #f0efe9;
+    border: 1px solid var(--line);
+    position: relative;
+  }
+
+  .project-card-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.82);
+    transition: transform 0.4s ease, filter 0.3s ease;
+    pointer-events: none;
+  }
+
+  .project-row:active .project-card-image {
+    filter: saturate(1);
+    transform: scale(1.02);
+  }
+
+  .project-number {
+    display: none;
+  }
+
+  .project-details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+  }
+
+  .project-details strong {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: clamp(20px, 5.5vw, 24px);
+    line-height: 1.25;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  .project-mobile-arrow {
+    display: inline-block;
+    font-size: 16px;
+    color: var(--terracotta);
+    margin-left: 8px;
+  }
+
+  .project-details small {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .project-year {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--terracotta);
+    text-transform: uppercase;
+    font-family: ui-monospace, monospace, Arial;
   }
 
   .project-arrow {
     display: none;
-  }
-
-  .project-details strong {
-    font-size: 21px;
   }
 
   .contact-link {
