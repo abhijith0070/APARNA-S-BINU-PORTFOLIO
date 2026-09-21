@@ -58,11 +58,11 @@ export default function AboutPage() {
                     {/* Portrait: Replace /placeholder-user.jpg with Aparna's portrait when provided */}
                     <img
                       className="cv-portrait-img"
-                      src="/placeholder-user.jpg"
+                      src="/img.jpg"
                       alt="Aparna S Binu"
                     />
                   </div>
-                  <p className="cv-portrait-caption">Portrait</p>
+                  <p className="cv-portrait-caption"></p>
                 </div>
               </div>
             </section>
@@ -351,21 +351,7 @@ export default function AboutPage() {
               </div>
             </section>
 
-            {/* 08 — REFERENCE */}
-            <section className="cv-section cv-reveal" aria-labelledby="cv-ref-title">
-              <div className="cv-section-marker">
-                <span className="cv-marker-num">08</span>
-                <h2 id="cv-ref-title" className="cv-marker-title">Reference</h2>
-              </div>
-              <div className="cv-reference-card">
-                <h3 className="cv-ref-name">Ar. Namrata Gopan</h3>
-                <p className="cv-ref-role">Asst. Prof. DCSAAD</p>
-                <p className="cv-ref-detail">Masters in Urban Design</p>
-                <p className="cv-ref-phone">
-                  <a href="tel:+918921070362" data-cursor="call">PH: +91 8921070362</a>
-                </p>
-              </div>
-            </section>
+
 
             {/* CONTACT & CV */}
             <div className="cv-contact-block cv-reveal" aria-label="Contact and CV Download">
@@ -377,6 +363,15 @@ export default function AboutPage() {
                 </a>
                 <a className="cv-contact-link" href="mailto:aiswarya4318@gmail.com" data-cursor="mail">
                   aiswarya4318@gmail.com
+                </a>
+                <a className="cv-contact-link" href="https://www.instagram.com/vivid_.voyzah?stkn=bHA4czYyb2dkMzEx" target="_blank" rel="noopener noreferrer" data-cursor="open">
+                  Instagram ↗
+                </a>
+                <a className="cv-contact-link" href="https://www.youtube.com/@Vividvoyzah" target="_blank" rel="noopener noreferrer" data-cursor="open">
+                  YouTube ↗
+                </a>
+                <a className="cv-contact-link" href="https://www.linkedin.com/in/aparna-s-binu-03450b2b9" target="_blank" rel="noopener noreferrer" data-cursor="open">
+                  LinkedIn ↗
                 </a>
               </div>
               <div className="cv-download-action">
