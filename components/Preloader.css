@@ -1,0 +1,249 @@
+/* ==========================================================
+   ARCHITECTURAL PRELOADER — APARNA S BINU
+   Minimal, editorial, archival contact-sheet aesthetic.
+   Colors:
+     Canvas:     #FBFAF7 (Warm White)
+     Ink:        #202020 (Soft Black)
+     Line:       #E4E3DF (Architectural grid rule)
+     Muted:      #777B7A (Archival metadata)
+     Terracotta: #B85C43 (Signature accent)
+   Typography:
+     Calisto MT, Georgia, serif
+   ========================================================== */
+
+.preloader-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99990;
+  background-color: #fbfaf7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: all;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.preloader-overlay.is-exiting {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ─── Architectural Frame Unit ─── */
+
+.preloader-frame-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: min(88vw, 360px);
+  position: relative;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.preloader-frame-unit.is-frame-hidden {
+  opacity: 0;
+  transform: scale(0.96);
+  pointer-events: none;
+}
+
+/* ─── Top Bar: Name & Counter ─── */
+
+.preloader-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 0 2px;
+}
+
+.preloader-name {
+  font-family: 'Calisto MT', Georgia, serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #202020;
+}
+
+.preloader-counter {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: #b85c43;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Central Rectangular Image Frame (Contact Sheet) ─── */
+
+.preloader-image-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  background-color: #f0efe9;
+  border: 1px solid #e4e3df;
+  overflow: hidden;
+}
+
+/* Architectural corner crosshair ticks (+) */
+.preloader-corner {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.preloader-corner-tl {
+  top: -1px;
+  left: -1px;
+  border-top: 1px solid #777b7a;
+  border-left: 1px solid #777b7a;
+}
+
+.preloader-corner-tr {
+  top: -1px;
+  right: -1px;
+  border-top: 1px solid #777b7a;
+  border-right: 1px solid #777b7a;
+}
+
+.preloader-corner-bl {
+  bottom: -1px;
+  left: -1px;
+  border-bottom: 1px solid #777b7a;
+  border-left: 1px solid #777b7a;
+}
+
+.preloader-corner-br {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1px solid #777b7a;
+  border-right: 1px solid #777b7a;
+}
+
+/* Inner cycling images */
+.preloader-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) contrast(1.06) brightness(0.96);
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 0.16s ease-out, transform 0.35s ease-out;
+  pointer-events: none;
+}
+
+.preloader-img.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ─── Bottom Bar: Archival Reference Meta ─── */
+
+.preloader-bottombar {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+  margin-top: 10px;
+  padding: 0 2px;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #777b7a;
+}
+
+.preloader-bottom-label {
+  font-weight: 500;
+}
+
+.preloader-bottom-ref {
+  font-weight: 400;
+  color: #777b7a;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 60%;
+}
+
+/* ─── Phase 4: "HELLO." Intro ─── */
+
+.preloader-hello-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.36s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.preloader-hello-wrap.is-hello-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.preloader-hello-wrap.is-hello-exit {
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.preloader-hello-title {
+  margin: 0;
+  font-family: 'Calisto MT', Georgia, 'Times New Roman', serif;
+  font-size: clamp(46px, 9vw, 84px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #202020;
+}
+
+.preloader-hello-dot {
+  color: #b85c43;
+  font-style: normal;
+}
+
+/* ─── Responsive Fine-Tuning ─── */
+
+@media (max-width: 600px) {
+  .preloader-frame-unit {
+    width: min(84vw, 300px);
+  }
+
+  .preloader-name {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+  }
+
+  .preloader-counter {
+    font-size: 10px;
+  }
+
+  .preloader-bottombar {
+    font-size: 8px;
+    letter-spacing: 0.1em;
+  }
+}

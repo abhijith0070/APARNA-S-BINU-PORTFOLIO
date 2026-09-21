@@ -1,6 +1,7 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import CustomCursor from '@/components/CustomCursor'
+import Preloader from '@/components/Preloader'
 import './globals.css'
 import './cursor.css'
 
@@ -18,8 +19,9 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <body>
+        <Preloader />
         <CustomCursor />
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
