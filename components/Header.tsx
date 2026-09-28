@@ -4,7 +4,13 @@ import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 
-export default function Header() {
+export default function Header({
+  theme = 'light',
+  className = '',
+}: {
+  theme?: 'light' | 'dark' | 'auto'
+  className?: string
+} = {}) {
   const [menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname()
   const closeMenu = () => setMenuOpen(false)
@@ -27,7 +33,7 @@ export default function Header() {
   }, [menuOpen])
 
   return (
-    <header className="site-header">
+    <header className={`site-header theme-${theme} ${className}`}>
       <Link className="wordmark" href="/" onClick={closeMenu} data-cursor="link">
         APARNA S BINU
       </Link>
@@ -43,8 +49,9 @@ export default function Header() {
         </div>
 
         <Link
-          href="/#work"
-          className={pathname === '/#work' ? 'is-active' : ''}
+          href="/work"
+          className={pathname === '/work' || pathname?.startsWith('/work/') ? 'is-active' : ''}
+          aria-current={pathname === '/work' || pathname?.startsWith('/work/') ? 'page' : undefined}
           onClick={closeMenu}
           data-cursor="link"
         >

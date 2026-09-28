@@ -1,46 +1,15 @@
 'use client'
 
 import { useState } from 'react'
+import dynamic from 'next/dynamic'
+import Link from 'next/link'
 import Header from '@/components/Header'
+import { projects } from '@/lib/projects'
 
-const projects = [
-  {
-    number: '01',
-    title: 'Threshold House',
-    category: 'Residential Architecture',
-    year: '2026',
-    image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=85',
-    alt: 'Warm modern house framed by trees',
-    href: '#contact',
-  },
-  {
-    number: '02',
-    title: 'A Room for Light',
-    category: 'Spatial Study',
-    year: '2025',
-    image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=85',
-    alt: 'Quiet interior with a sculptural staircase',
-    href: '#contact',
-  },
-  {
-    number: '03',
-    title: 'Ground / Gathering',
-    category: 'Urban + Spatial Design',
-    year: '2025',
-    image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85',
-    alt: 'Light-filled communal interior',
-    href: '#contact',
-  },
-  {
-    number: '04',
-    title: 'Material Notes',
-    category: 'Interior Architecture',
-    year: '2024',
-    image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=85',
-    alt: 'Minimal interior with natural materials',
-    href: '#contact',
-  },
-]
+const LocationGlobe = dynamic(() => import('@/components/LocationGlobe'), {
+  ssr: false,
+  loading: () => <div className="location-globe-container" aria-hidden="true" />,
+})
 
 export default function Page() {
   const [activeProject, setActiveProject] = useState(projects[0])
@@ -80,10 +49,10 @@ export default function Page() {
           <div className="work-layout">
             <div className="project-list">
               {projects.map((project) => (
-                <a
+                <Link
                   className="project-row"
-                  href={project.href}
-                  key={project.number}
+                  href={`/work/${project.slug}`}
+                  key={project.id}
                   data-cursor="view"
                   onMouseEnter={() => setActiveProject(project)}
                   onFocus={() => setActiveProject(project)}
@@ -94,7 +63,7 @@ export default function Page() {
                     <img
                       className="project-card-image"
                       src={project.image}
-                      alt={project.alt}
+                      alt={project.title}
                       loading="lazy"
                     />
                   </div>
@@ -109,34 +78,47 @@ export default function Page() {
                   </div>
                   <span className="project-year">{project.year}</span>
                   <span className="project-arrow" aria-hidden="true">↗</span>
-                </a>
+                </Link>
               ))}
+
+              {/* Minimal directional CTA to dedicated /work page */}
+              <div className="work-archive-cta">
+                <Link href="/work" className="work-archive-link" data-cursor="link">
+                  <span>View all work</span>
+                  <span className="work-archive-arrow" aria-hidden="true">↗</span>
+                </Link>
+              </div>
             </div>
 
             {/* Desktop sticky preview with clickable link */}
             <div className="project-preview" aria-live="polite">
-              <a
+              <Link
                 className="project-preview-link"
-                href={activeProject.href}
+                href={`/work/${activeProject.slug}`}
                 data-cursor="view"
                 aria-label={`View ${activeProject.title}`}
               >
-                <img src={activeProject.image} alt={activeProject.alt} />
+                <img src={activeProject.image} alt={activeProject.title} />
                 <p>
                   <span>{activeProject.title}</span>
                   <span>{activeProject.number} ↗</span>
                 </p>
-              </a>
+              </Link>
             </div>
           </div>
         </section>
 
         <section id="contact" className="contact section-rule" aria-labelledby="contact-title">
           <div className="section-marker"><span>03</span><span id="contact-title">Contact</span></div>
-          <div className="contact-content">
-            <p className="contact-kicker">For collaborations, internships<br />or conversations about space.</p>
-            <a className="contact-link" href="mailto:hello@aparnasbinu.com" data-cursor="mail">Let&apos;s talk <span aria-hidden="true">↗</span></a>
-            <div className="contact-meta"><span>Based in Kerala, India</span><span>Available for new conversations</span></div>
+          <div className="contact-layout">
+            <div className="contact-globe-area">
+              <LocationGlobe />
+            </div>
+            <div className="contact-content">
+              <p className="contact-kicker">For collaborations, internships<br />or conversations about space.</p>
+              <a className="contact-link" href="mailto:hello@aparnasbinu.com" data-cursor="mail">Let&apos;s talk <span aria-hidden="true">↗</span></a>
+              <div className="contact-meta"><span>Based in Kerala, India</span><span>Available for new conversations</span></div>
+            </div>
           </div>
         </section>
       </div>

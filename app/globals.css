@@ -51,23 +51,40 @@ button {
 }
 
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 10;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: space-between;
   min-height: 72px;
   padding: 0 5vw;
-  background: color-mix(in srgb, var(--paper) 94%, transparent);
-  border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(8px);
+  background: transparent !important;
+  border-bottom: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  pointer-events: none;
+}
+
+.site-header .wordmark,
+.site-header .main-nav,
+.site-header .menu-toggle {
+  pointer-events: auto;
 }
 
 .wordmark {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: .16em;
+  color: var(--ink);
+  transition: color .25s ease;
+}
+
+.wordmark:hover {
+  color: var(--terracotta);
 }
 
 .main-nav {
@@ -80,6 +97,7 @@ button {
 
 .main-nav a {
   position: relative;
+  color: var(--ink);
   transition: color .25s ease;
 }
 
@@ -117,6 +135,56 @@ button {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: .12em;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+/* ─── Dark Header Theme (over architectural photos / dark background) ─── */
+.site-header.theme-dark .wordmark {
+  color: #FBFAF7;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55), 0 0 12px rgba(0, 0, 0, 0.35);
+}
+
+.site-header.theme-dark .wordmark:hover {
+  color: #e5876d;
+}
+
+.site-header.theme-dark .main-nav a {
+  color: #FBFAF7;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55), 0 0 12px rgba(0, 0, 0, 0.35);
+}
+
+.site-header.theme-dark .main-nav a:hover,
+.site-header.theme-dark .main-nav a.is-active,
+.site-header.theme-dark .main-nav a[aria-current="page"] {
+  color: #e5876d;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
+}
+
+.site-header.theme-dark .main-nav a::after {
+  background: #e5876d;
+}
+
+.site-header.theme-dark .menu-toggle {
+  color: #FBFAF7;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
+}
+
+/* Mobile drawer overrides: drawer always has warm paper background */
+.site-header .main-nav.is-open a {
+  color: var(--ink) !important;
+  text-shadow: none !important;
+}
+
+.site-header .main-nav.is-open a.is-active,
+.site-header .main-nav.is-open a:hover {
+  color: var(--terracotta) !important;
+}
+
+.site-header .main-nav.is-open .mobile-nav-meta,
+.site-header .main-nav.is-open .mobile-nav-footer {
+  color: var(--muted) !important;
+  text-shadow: none !important;
 }
 
 .page-shell {
@@ -247,8 +315,7 @@ h1 em {
   color: var(--ink);
 }
 
-.about-content,
-.contact-content {
+.about-content {
   display: grid;
   grid-template-columns: 7fr 3fr;
   gap: 10vw;
@@ -299,6 +366,60 @@ h1 em {
 .project-row:focus-visible {
   padding-left: 14px;
   color: var(--terracotta);
+}
+
+/* ─── Work Archive CTA (Homepage to /work) ─── */
+.work-archive-cta {
+  padding-top: 36px;
+  display: flex;
+  align-items: center;
+}
+
+.work-archive-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 6px;
+  transition: color .25s ease;
+}
+
+.work-archive-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--terracotta);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .25s ease;
+}
+
+.work-archive-arrow {
+  display: inline-block;
+  font-size: 13px;
+  color: var(--terracotta);
+  transition: transform .25s ease;
+}
+
+.work-archive-link:hover {
+  color: var(--terracotta);
+}
+
+.work-archive-link:hover::after {
+  transform: scaleX(1);
+}
+
+.work-archive-link:hover .work-archive-arrow {
+  transform: translate(3px, -3px);
 }
 
 .project-number,
@@ -378,13 +499,34 @@ h1 em {
   display: none;
 }
 
+/* ============================================================
+   CONTACT SECTION — Globe + Content Layout
+   ============================================================ */
+
 .contact {
   padding-bottom: 120px;
 }
 
+.contact-layout {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 4vw;
+  padding: 60px 0 0;
+  align-items: center;
+}
+
+.contact-globe-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2vw;
+}
+
 .contact-content {
-  grid-template-columns: 1fr 1.5fr;
-  align-items: end;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
 }
 
 .contact-kicker {
@@ -402,6 +544,7 @@ h1 em {
   font-size: clamp(42px, 7vw, 92px);
   letter-spacing: -.06em;
   transition: color .25s ease, border-color .25s ease;
+  margin-top: 20px;
 }
 
 .contact-link:hover {
@@ -416,11 +559,129 @@ h1 em {
 }
 
 .contact-meta {
-  grid-column: 2;
   display: flex;
   justify-content: space-between;
   color: var(--muted);
   margin-top: 32px;
+}
+
+/* ============================================================
+   LOCATION GLOBE COMPONENT
+   ============================================================ */
+
+.location-globe-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 310px;
+}
+
+.location-globe-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 50%;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.location-globe-container canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.location-globe-container.is-hovered {
+  transform: scale(1.02);
+}
+
+.location-globe-container.is-animating {
+  transform: none;
+  cursor: default;
+}
+
+/* Globe idle hint */
+.globe-hint {
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0.5;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.location-globe-container.is-hovered .globe-hint {
+  opacity: 0.8;
+}
+
+.location-globe-container.is-animating .globe-hint {
+  display: none;
+}
+
+/* Globe location label (rendered below globe as HTML) */
+.globe-location-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  user-select: none;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.globe-location-label.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.globe-location-name {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.globe-location-coords {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.globe-open-location {
+  display: inline-block;
+  margin-top: 4px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  text-decoration: none;
+  padding: 4px 10px;
+  border: 1px solid var(--terracotta);
+  border-radius: 0;
+  transition: background 0.25s ease, color 0.25s ease;
+  cursor: pointer;
+}
+
+.globe-open-location:hover {
+  background: var(--terracotta);
+  color: var(--paper);
 }
 
 .site-footer {
@@ -629,8 +890,7 @@ h1 em {
     padding: 30px 0 100px;
   }
 
-  .about-content,
-  .contact-content {
+  .about-content {
     display: block;
     padding: 65px 0 0;
   }
@@ -751,6 +1011,29 @@ h1 em {
     display: none;
   }
 
+  /* Contact section — mobile */
+  .contact-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 50px 0 0;
+  }
+
+  .contact-globe-area {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .location-globe-wrapper {
+    max-width: 175px;
+  }
+
+  .contact-content {
+    display: block;
+    padding: 0;
+  }
+
   .contact-link {
     margin-top: 46px;
     font-size: 57px;
@@ -761,6 +1044,11 @@ h1 em {
     flex-direction: column;
     gap: 12px;
     margin-top: 26px;
+  }
+
+  .globe-hint {
+    font-size: 8px;
+    bottom: 4%;
   }
 
   .site-footer {

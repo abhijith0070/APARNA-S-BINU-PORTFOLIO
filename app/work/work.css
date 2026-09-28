@@ -1,0 +1,779 @@
+/* ============================================================
+   /work — ARCHITECTURE PORTFOLIO INDEX
+   Three-mode project presentation: Fullscreen · Grid · List
+   ============================================================ */
+
+/* ─── Font face (reuse existing Calisto MT) ─── */
+@font-face {
+  font-family: 'CalistoMT';
+  src: url('/fonts/CalistoMT.woff2') format('woff2'),
+       url('/fonts/CalistoMT.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CalistoMT';
+  src: url('/fonts/CalistoMT-Italic.woff2') format('woff2'),
+       url('/fonts/CalistoMT-Italic.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CalistoMT';
+  src: url('/fonts/CalistoMT-Bold.woff2') format('woff2'),
+       url('/fonts/CalistoMT-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Page shell ─── */
+.work-page {
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* ============================================================
+   WORK CONTROLS BAR (Grid & List modes)
+   Sits below the fixed transparent universal portfolio navbar
+   ============================================================ */
+
+.work-controls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 92px 5vw 24px;
+  background: transparent;
+  position: relative;
+  z-index: 20;
+}
+
+.work-controls-left {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.work-controls-count {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ─── View switcher ─── */
+.work-view-switcher {
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+}
+
+.work-view-label {
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-right: 14px;
+  user-select: none;
+}
+
+.work-view-btn {
+  position: relative;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 7px 15px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+  margin-left: -1px;
+}
+
+.work-view-btn:first-of-type {
+  margin-left: 0;
+}
+
+.work-view-btn:hover {
+  color: var(--ink);
+}
+
+.work-view-btn.is-active {
+  color: var(--ink);
+  background: rgba(0, 0, 0, 0.04);
+  border-color: var(--ink);
+  z-index: 1;
+}
+
+/* ============================================================
+   CONTENT TRANSITION
+   ============================================================ */
+
+.work-content {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.work-content.is-transitioning {
+  opacity: 0;
+}
+
+/* ============================================================
+   FULLSCREEN VIEW
+   Full-bleed architectural presentation with stacked photographic
+   transitions, pure transparent portfolio header, floating switcher,
+   and editorial typography overlay.
+   ============================================================ */
+
+.work-page.is-fullscreen {
+  background: #141413;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* View Switcher Overlay in fullscreen mode (pure transparent, minimal border) */
+.work-fs-switcher-wrap {
+  position: fixed;
+  top: 76px;
+  right: 5vw;
+  left: auto;
+  z-index: 20;
+  pointer-events: auto;
+}
+
+.work-fs-switcher-wrap .work-view-switcher {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.work-fs-switcher-wrap .work-view-label {
+  padding-left: 12px;
+  margin-right: 12px;
+  color: rgba(251, 250, 247, 0.6);
+}
+
+.work-fs-switcher-wrap .work-view-btn {
+  border: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 6px 14px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: rgba(251, 250, 247, 0.7);
+  background: transparent;
+}
+
+.work-fs-switcher-wrap .work-view-btn:hover {
+  color: #ffffff;
+}
+
+.work-fs-switcher-wrap .work-view-btn.is-active {
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Fullscreen project stack */
+.work-fullscreen {
+  position: relative;
+  width: 100vw;
+  max-width: 100%;
+}
+
+.work-fs-slide {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  max-width: 100%;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  box-shadow: 0 -12px 48px rgba(0, 0, 0, 0.35);
+  background: #181817;
+}
+
+.work-fs-link {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.work-fs-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  will-change: transform, opacity;
+}
+
+.work-fs-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.92);
+  transition: filter 0.6s ease;
+  will-change: transform;
+}
+
+.work-fs-link:hover .work-fs-image {
+  filter: saturate(1.04);
+}
+
+/* Localized subtle directional scrim in lower 35% for editorial legibility without washing out the photo */
+.work-fs-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(16, 16, 16, 0.6) 0%,
+    rgba(16, 16, 16, 0.22) 35%,
+    rgba(16, 16, 16, 0.04) 55%,
+    transparent 75%
+  );
+}
+
+/* Editorial project information overlay */
+.work-fs-meta {
+  position: absolute;
+  bottom: clamp(36px, 7vh, 72px);
+  left: 5vw;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: min(90vw, 860px);
+  pointer-events: none;
+}
+
+.work-fs-meta-top {
+  will-change: transform;
+}
+
+.work-fs-number {
+  font-family: 'CalistoMT', Georgia, serif;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: #e5876d;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.work-fs-title {
+  font-family: 'CalistoMT', Georgia, serif;
+  font-size: clamp(36px, 5.8vw, 76px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #fbfaf7;
+  margin: 0;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.7);
+  transition: color 0.3s ease;
+  will-change: transform;
+}
+
+.work-fs-link:hover .work-fs-title {
+  color: #ffffff;
+}
+
+.work-fs-meta-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 4px;
+  will-change: transform;
+}
+
+.work-fs-disciplines {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(251, 250, 247, 0.85);
+  margin: 0;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.work-fs-year {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: rgba(251, 250, 247, 0.7);
+  font-family: ui-monospace, monospace, Arial;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.work-fs-counter {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: #e5876d;
+  font-family: ui-monospace, monospace, Arial;
+  margin-top: 4px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* ============================================================
+   GRID VIEW
+   ============================================================ */
+
+.work-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  padding: 0;
+}
+
+.work-grid-card {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.work-grid-card.is-full {
+  grid-column: 1 / -1;
+}
+
+.work-grid-image-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: #f0efe9;
+}
+
+.work-grid-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.82);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.5s ease;
+  will-change: transform;
+}
+
+.work-grid-card:hover .work-grid-image {
+  transform: scale(1.04);
+  filter: saturate(1);
+}
+
+.work-grid-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 22px 28px 30px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.work-grid-card:hover .work-grid-info {
+  transform: translateX(4px);
+}
+
+.work-grid-number {
+  font-family: 'CalistoMT', Georgia, serif;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--terracotta);
+}
+
+.work-grid-title {
+  font-family: 'CalistoMT', Georgia, serif;
+  font-size: clamp(22px, 2.5vw, 32px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.work-grid-card:hover .work-grid-title {
+  color: var(--terracotta);
+}
+
+.work-grid-disciplines {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ============================================================
+   LIST VIEW
+   ============================================================ */
+
+.work-list-wrap {
+  width: min(1320px, 90vw);
+  margin: 0 auto;
+  padding: 48px 0 120px;
+}
+
+/* ─── Filters ─── */
+.work-list-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0;
+}
+
+.work-filter-btn {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 12px 20px;
+  border: none;
+  background: none;
+  color: var(--muted);
+  cursor: pointer;
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+.work-filter-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  right: 20px;
+  height: 1.5px;
+  background: var(--terracotta);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.work-filter-btn:hover {
+  color: var(--ink);
+}
+
+.work-filter-btn.is-active {
+  color: var(--ink);
+}
+
+.work-filter-btn.is-active::after {
+  transform: scaleX(1);
+}
+
+/* ─── List rows ─── */
+.work-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.work-list-row {
+  display: grid;
+  grid-template-columns: 40px 1fr 1fr 80px 30px;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 8px;
+  text-decoration: none;
+  color: inherit;
+  border-top: 1px solid var(--line);
+  transition: padding-left 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.3s ease;
+}
+
+.work-list-row:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.work-list-row:hover {
+  padding-left: 16px;
+  background: rgba(0, 0, 0, 0.015);
+}
+
+.work-list-num {
+  font-family: 'CalistoMT', Georgia, serif;
+  font-size: 12px;
+  color: var(--terracotta);
+  letter-spacing: 0.04em;
+}
+
+.work-list-title {
+  font-family: 'CalistoMT', Georgia, serif;
+  font-size: clamp(18px, 2vw, 26px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  transition: color 0.3s ease;
+}
+
+.work-list-row:hover .work-list-title {
+  color: var(--terracotta);
+}
+
+.work-list-disciplines {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.work-list-year {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  font-family: ui-monospace, monospace, Arial;
+}
+
+.work-list-arrow {
+  font-size: 14px;
+  color: var(--muted);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.work-list-row:hover .work-list-arrow {
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
+
+/* ─── Floating hover preview ─── */
+.work-list-preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 90;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+}
+
+.work-list-preview.is-visible {
+  opacity: 1;
+}
+
+.work-list-preview-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.85);
+  transform: scale(1.05);
+  transition: transform 0.5s ease;
+}
+
+.work-list-preview.is-visible .work-list-preview-img {
+  transform: scale(1);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.work-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 26px 5vw;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.work-footer span:first-child {
+  color: var(--ink);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .work-fs-meta {
+    bottom: 60px;
+  }
+
+  .work-list-row {
+    grid-template-columns: 30px 1fr 1fr 60px 24px;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .work-controls-bar {
+    padding: 76px 4vw 18px;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+
+  .work-controls-count {
+    display: none;
+  }
+
+  .work-view-label {
+    display: none;
+  }
+
+  .work-view-btn {
+    font-size: 9px;
+    padding: 6px 10px;
+  }
+
+  /* Fullscreen — maintain full bleed on tablet/mobile */
+  .work-fs-switcher-wrap {
+    top: 66px;
+    right: 4vw;
+    left: auto;
+  }
+
+  .work-fs-switcher-wrap .work-view-label {
+    display: none;
+  }
+
+  .work-fs-switcher-wrap .work-view-btn {
+    font-size: 9px;
+    padding: 6px 11px;
+  }
+
+  .work-fs-slide {
+    width: 100vw;
+    height: 100vh;
+    height: 100svh;
+    min-height: 100svh;
+    padding: 0;
+  }
+
+  .work-fs-meta {
+    position: absolute;
+    bottom: clamp(24px, 5vh, 48px);
+    left: 4vw;
+    right: 4vw;
+    max-width: calc(100vw - 8vw);
+    padding: 0;
+    margin: 0;
+  }
+
+  .work-fs-title {
+    font-size: clamp(28px, 8.5vw, 44px);
+    line-height: 1.08;
+  }
+
+  /* Grid */
+  .work-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .work-grid-card.is-full {
+    grid-column: 1;
+  }
+
+  .work-grid-info {
+    padding: 16px 4vw 24px;
+  }
+
+  /* List */
+  .work-list-wrap {
+    padding: 32px 0 80px;
+    width: 92vw;
+  }
+
+  .work-list-filters {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .work-list-filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .work-filter-btn {
+    padding: 10px 14px;
+    font-size: 9px;
+    white-space: nowrap;
+  }
+
+  .work-list-row {
+    grid-template-columns: 28px 1fr auto;
+    gap: 8px;
+    padding: 18px 4px;
+  }
+
+  .work-list-disciplines,
+  .work-list-year {
+    display: none;
+  }
+
+  .work-list-arrow {
+    opacity: 1;
+    font-size: 12px;
+  }
+
+  .work-list-title {
+    font-size: 16px;
+  }
+
+  /* Footer */
+  .work-footer {
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 4vw;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 480px) {
+  .work-fs-title {
+    font-size: clamp(24px, 8vw, 36px);
+  }
+
+  .work-fs-switcher-wrap .work-view-btn {
+    font-size: 8px;
+    padding: 5px 9px;
+  }
+
+  .work-grid-title {
+    font-size: 20px;
+  }
+
+  .work-view-btn {
+    font-size: 8px;
+    padding: 5px 8px;
+  }
+}
+
+/* ─── Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .work-fs-image,
+  .work-grid-image,
+  .work-grid-info,
+  .work-list-preview,
+  .work-list-preview-img,
+  .work-list-row,
+  .work-list-arrow,
+  .work-content {
+    transition-duration: 0.01ms !important;
+  }
+
+  .work-fs-slide:hover .work-fs-image,
+  .work-grid-card:hover .work-grid-image {
+    transform: none;
+  }
+}
