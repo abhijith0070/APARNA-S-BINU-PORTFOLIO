@@ -50,6 +50,28 @@ export default function AboutPage() {
                   <p className="cv-intro-statement">
                     A fourth-year architecture student drawn to spatial design and visual storytelling — and to the quiet relationships between people and the spaces they inhabit.
                   </p>
+
+                  <div className="cv-hero-actions">
+                    <a
+                      className="cv-download-btn cv-view-btn"
+                      href="/portfolio%20combined%20final.jpg"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-cursor="view"
+                      title="View full portfolio and CV in a new tab"
+                    >
+                      View CV <span aria-hidden="true">↗</span>
+                    </a>
+                    <a
+                      className="cv-download-btn cv-save-btn"
+                      href="/portfolio%20combined%20final.jpg"
+                      download="Aparna-S-Binu-Portfolio-CV.jpg"
+                      data-cursor="open"
+                      title="Download portfolio and CV image"
+                    >
+                      Download CV <span aria-hidden="true">↓</span>
+                    </a>
+                  </div>
                 </div>
 
                 {/* Supporting profile image */}
@@ -353,8 +375,8 @@ export default function AboutPage() {
 
 
 
-            {/* CONTACT & CV */}
-            <div className="cv-contact-block cv-reveal" aria-label="Contact and CV Download">
+            {/* CONTACT */}
+            <div className="cv-contact-block cv-reveal" aria-label="Contact Information">
               <p className="cv-contact-header">Contact</p>
               <div className="cv-contact-details">
                 <span className="cv-contact-name">Aparna S Binu</span>
@@ -372,11 +394,6 @@ export default function AboutPage() {
                 </a>
                 <a className="cv-contact-link" href="https://www.linkedin.com/in/aparna-s-binu-03450b2b9" target="_blank" rel="noopener noreferrer" data-cursor="open">
                   LinkedIn ↗
-                </a>
-              </div>
-              <div className="cv-download-action">
-                <a className="cv-download-btn" href="#" onClick={(e) => e.preventDefault()} data-cursor="view">
-                  View / Download CV <span aria-hidden="true">↗</span>
                 </a>
               </div>
             </div>
