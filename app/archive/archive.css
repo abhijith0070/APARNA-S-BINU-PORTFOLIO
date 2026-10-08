@@ -1,0 +1,560 @@
+/* ================================================================
+   ARCHIVE — Architectural Photo Archive
+   A contemporary, editorial architecture publication layout.
+   Uses the existing design system: colors, typography, spacing.
+   ================================================================ */
+
+/* ─── Page Shell ─── */
+.archive-page {
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+/* ─── Intro ─── */
+.archive-intro {
+  width: min(1480px, calc(100vw - 6vw));
+  margin: 0 auto;
+  padding: 140px 0 50px;
+}
+
+.archive-intro-rule {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--line);
+  border: none;
+  margin: 0 0 36px;
+}
+
+.archive-title {
+  font-family: 'Calisto MT', Georgia, 'Times New Roman', serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0;
+}
+
+.archive-subtitle {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin: 12px 0 0;
+  font-weight: 400;
+  max-width: 440px;
+  line-height: 1.6;
+}
+
+/* ─── Controls Bar ─── */
+.archive-controls {
+  width: min(1480px, calc(100vw - 6vw));
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0 36px;
+}
+
+.archive-count {
+  font-size: 10px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ─── View Switcher (FEATURE | GRID only) ─── */
+.archive-view-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border: 1px solid var(--line);
+}
+
+.archive-view-btn {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: transparent;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: color 0.25s ease, background-color 0.25s ease;
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.archive-view-btn:not(:last-child) {
+  border-right: 1px solid var(--line);
+}
+
+.archive-view-btn:hover {
+  color: var(--ink);
+}
+
+.archive-view-btn.is-active {
+  color: var(--paper);
+  background: var(--ink);
+}
+
+/* ─── Content Transition ─── */
+.archive-content {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.archive-content.is-transitioning {
+  opacity: 0;
+}
+
+/* ================================================================
+   FEATURE VIEW — Large, Immersive Architectural Photo Collage
+   Large scale, tight gutters (16px), full-width editorial presence.
+   ================================================================ */
+.archive-feature {
+  width: calc(100vw - 6vw);
+  max-width: 1720px;
+  margin: 0 auto;
+  padding-bottom: 120px;
+}
+
+.feature-comp {
+  position: relative;
+  display: flex;
+  width: 100%;
+  gap: 16px;
+  margin-bottom: 24px;
+  align-items: flex-start;
+}
+
+.archive-feature-item {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  cursor: pointer;
+  /* Entrance animation */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.archive-feature-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.archive-feature-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .archive-feature-item:hover .archive-feature-img {
+    transform: scale(1.025);
+  }
+}
+
+/* ─── Composition Spreads (Desktop) ─── */
+
+/* 1. BIG + BIG (50% / 50%) */
+.feature-comp--big-big .comp-item--big-1 {
+  flex: 1 1 50%;
+  width: 50%;
+}
+
+.feature-comp--big-big .comp-item--big-2 {
+  flex: 1 1 50%;
+  width: 50%;
+}
+
+/* 2. MEDIUM + BIG (43% / 57%) */
+.feature-comp--med-big .comp-item--med {
+  flex: 0 0 calc(43% - 8px);
+  width: calc(43% - 8px);
+}
+
+.feature-comp--med-big .comp-item--big {
+  flex: 0 0 calc(57% - 8px);
+  width: calc(57% - 8px);
+}
+
+/* 3. BIG + MEDIUM (57% / 43%) */
+.feature-comp--big-med .comp-item--big {
+  flex: 0 0 calc(57% - 8px);
+  width: calc(57% - 8px);
+}
+
+.feature-comp--big-med .comp-item--med {
+  flex: 0 0 calc(43% - 8px);
+  width: calc(43% - 8px);
+}
+
+/* 4. FULL-WIDTH SPREAD (100%) */
+.feature-comp--full .comp-item--full-bleed {
+  flex: 1 1 100%;
+  width: 100%;
+}
+
+/* ================================================================
+   GRID VIEW — 4 Columns Desktop, 2 Columns Mobile (UNTOUCHED)
+   Clean 4x4 matrix for 16 photographs.
+   ================================================================ */
+.archive-grid {
+  width: min(1360px, 92vw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding-bottom: 120px;
+  align-items: center;
+}
+
+@media (min-width: 1600px) {
+  .archive-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+}
+
+.archive-grid-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 3 / 4;
+  width: 100%;
+  background: transparent;
+  cursor: pointer;
+  overflow: hidden;
+  /* Entrance animation */
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.archive-grid-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.archive-grid-img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+/* Grid hover: scale 1.03 with smooth easing, no captions or text */
+@media (hover: hover) and (pointer: fine) {
+  .archive-grid-item:hover .archive-grid-img {
+    transform: scale(1.03);
+  }
+}
+
+/* ================================================================
+   LIGHTBOX — Architecture Publication Image Viewer
+   Displays full-resolution JPEG with uncropped aspect ratio.
+   ================================================================ */
+.archive-lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(251, 250, 247, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.archive-lightbox-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.archive-lightbox-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 94vw;
+  height: 90vh;
+  padding: 24px;
+}
+
+.archive-lightbox-img {
+  max-width: 90vw;
+  max-height: 84vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity 0.35s ease 0.05s, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.05s;
+  user-select: none;
+}
+
+.archive-lightbox-overlay.is-open .archive-lightbox-img {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ─── Lightbox Controls ─── */
+.archive-lightbox-close {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid var(--line);
+  cursor: pointer;
+  z-index: 10;
+  transition: border-color 0.25s ease, color 0.25s ease;
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1;
+  padding: 0;
+}
+
+.archive-lightbox-close:hover {
+  border-color: var(--terracotta);
+  color: var(--terracotta);
+}
+
+.archive-lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid var(--line);
+  cursor: pointer;
+  z-index: 10;
+  transition: border-color 0.25s ease, color 0.25s ease;
+  color: var(--ink);
+  font-size: 16px;
+  padding: 0;
+}
+
+.archive-lightbox-nav:hover {
+  border-color: var(--terracotta);
+  color: var(--terracotta);
+}
+
+.archive-lightbox-prev {
+  left: 24px;
+}
+
+.archive-lightbox-next {
+  right: 24px;
+}
+
+.archive-lightbox-counter {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  user-select: none;
+}
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+.archive-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 28px 5vw;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.archive-footer span:first-child {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+/* ================================================================
+   RESPONSIVE — Tablet (≤ 1024px)
+   ================================================================ */
+@media (max-width: 1024px) {
+  .feature-comp {
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .archive-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+}
+
+/* ================================================================
+   RESPONSIVE — Mobile (≤ 768px)
+   Large, single-column editorial stream.
+   ================================================================ */
+@media (max-width: 768px) {
+  .archive-intro {
+    padding: 100px 0 32px;
+    width: calc(100vw - 8vw);
+  }
+
+  .archive-title {
+    font-size: 12px;
+  }
+
+  .archive-subtitle {
+    font-size: 11px;
+    margin-top: 10px;
+  }
+
+  .archive-controls {
+    width: calc(100vw - 8vw);
+    padding: 0 0 24px;
+  }
+
+  .archive-count {
+    font-size: 9px;
+  }
+
+  .archive-view-btn {
+    font-size: 9px;
+    padding: 8px 14px;
+  }
+
+  /* ─── Mobile Feature: Single-Column Natural Flow ─── */
+  .archive-feature {
+    width: calc(100vw - 8vw);
+    padding-bottom: 80px;
+  }
+
+  .feature-comp {
+    flex-direction: column !important;
+    gap: 16px !important;
+    margin-bottom: 16px !important;
+    width: 100% !important;
+    align-items: stretch !important;
+  }
+
+  .feature-comp .comp-item {
+    flex: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  .archive-feature-img {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* ─── Mobile Grid View: 2 Columns (UNTOUCHED) ─── */
+  .archive-grid {
+    width: 90vw;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding-bottom: 80px;
+  }
+
+  /* ─── Lightbox Mobile ─── */
+  .archive-lightbox-content {
+    width: 96vw;
+    height: 82vh;
+    padding: 12px;
+  }
+
+  .archive-lightbox-img {
+    max-width: 94vw;
+    max-height: 76vh;
+  }
+
+  .archive-lightbox-close {
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .archive-lightbox-nav {
+    width: 38px;
+    height: 38px;
+    font-size: 14px;
+  }
+
+  .archive-lightbox-prev {
+    left: 8px;
+  }
+
+  .archive-lightbox-next {
+    right: 8px;
+  }
+
+  .archive-lightbox-counter {
+    bottom: 16px;
+    font-size: 9px;
+  }
+
+  .archive-footer {
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px 6vw;
+    line-height: 1.5;
+  }
+}
+
+/* ================================================================
+   REDUCED MOTION
+   ================================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .archive-feature-item,
+  .archive-grid-item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .archive-feature-img,
+  .archive-grid-img {
+    transition: none !important;
+  }
+
+  .archive-lightbox-overlay,
+  .archive-lightbox-img {
+    transition: none !important;
+  }
+
+  .archive-content {
+    transition: none !important;
+  }
+}

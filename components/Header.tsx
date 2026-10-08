@@ -45,7 +45,7 @@ export default function Header({
       >
         <div className="mobile-nav-meta" aria-hidden="true">
           <span>Index</span>
-          <span>01—03</span>
+          <span>01—04</span>
         </div>
 
         <Link
@@ -59,13 +59,23 @@ export default function Header({
           <span className="nav-item-text">Work</span>
         </Link>
         <Link
+          href="/archive"
+          className={pathname === '/archive' ? 'is-active' : ''}
+          aria-current={pathname === '/archive' ? 'page' : undefined}
+          onClick={closeMenu}
+          data-cursor="link"
+        >
+          <span className="nav-item-num" aria-hidden="true">02</span>
+          <span className="nav-item-text">Archive</span>
+        </Link>
+        <Link
           href="/about"
           className={pathname === '/about' ? 'is-active' : ''}
           aria-current={pathname === '/about' ? 'page' : undefined}
           onClick={closeMenu}
           data-cursor="link"
         >
-          <span className="nav-item-num" aria-hidden="true">02</span>
+          <span className="nav-item-num" aria-hidden="true">03</span>
           <span className="nav-item-text">About</span>
         </Link>
         <Link
@@ -75,7 +85,7 @@ export default function Header({
           onClick={closeMenu}
           data-cursor="link"
         >
-          <span className="nav-item-num" aria-hidden="true">03</span>
+          <span className="nav-item-num" aria-hidden="true">04</span>
           <span className="nav-item-text">Contact</span>
         </Link>
 

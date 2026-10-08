@@ -88,6 +88,12 @@ export default function Page() {
                   <span className="work-archive-arrow" aria-hidden="true">↗</span>
                 </Link>
               </div>
+              <div className="work-archive-cta" style={{ paddingTop: '14px' }}>
+                <Link href="/archive" className="work-archive-link" data-cursor="link">
+                  <span>Explore archive</span>
+                  <span className="work-archive-arrow" aria-hidden="true">↗</span>
+                </Link>
+              </div>
             </div>
 
             {/* Desktop sticky preview with clickable link */}
