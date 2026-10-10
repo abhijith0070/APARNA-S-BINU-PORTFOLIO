@@ -384,7 +384,7 @@ export default function AboutPage() {
                   PH: 8075368575
                 </a>
                 <a className="cv-contact-link" href="mailto:aparnasbinu02@gmail.com" data-cursor="mail">
-                  aparnasbinu02@gmail.com@gmail.com
+                  aparnasbinu02@gmail.com
                 </a>
                 <a className="cv-contact-link" href="https://www.instagram.com/vivid_.voyzah?stkn=bHA4czYyb2dkMzEx" target="_blank" rel="noopener noreferrer" data-cursor="open">
                   Instagram ↗
