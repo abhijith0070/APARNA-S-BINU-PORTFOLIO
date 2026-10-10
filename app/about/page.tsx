@@ -383,8 +383,8 @@ export default function AboutPage() {
                 <a className="cv-contact-link" href="tel:8075368575" data-cursor="call">
                   PH: 8075368575
                 </a>
-                <a className="cv-contact-link" href="mailto:aiswarya4318@gmail.com" data-cursor="mail">
-                  aiswarya4318@gmail.com
+                <a className="cv-contact-link" href="mailto:aparnasbinu02@gmail.com" data-cursor="mail">
+                  aparnasbinu02@gmail.com@gmail.com
                 </a>
                 <a className="cv-contact-link" href="https://www.instagram.com/vivid_.voyzah?stkn=bHA4czYyb2dkMzEx" target="_blank" rel="noopener noreferrer" data-cursor="open">
                   Instagram ↗

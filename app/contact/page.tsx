@@ -50,8 +50,8 @@ const directContacts = [
   {
     num: '02',
     type: 'Email',
-    value: 'aiswarya4318@gmail.com',
-    href: 'mailto:aiswarya4318@gmail.com',
+    value: 'aparnasbinu02@gmail.com',
+    href: 'mailto:aparnasbinu02@gmail.com',
     cursor: 'mail',
     icon: <Mail size={16} />,
   },
