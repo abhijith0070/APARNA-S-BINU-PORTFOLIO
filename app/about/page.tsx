@@ -63,6 +63,16 @@ export default function AboutPage() {
                       View CV <span aria-hidden="true">↗</span>
                     </a>
                     <a
+                      className="cv-download-btn cv-view-btn"
+                      href="/APARNA_S_BINU_RESUME%20.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-cursor="view"
+                      title="View resume in a new tab"
+                    >
+                      View Resume <span aria-hidden="true">↗</span>
+                    </a>
+                    <a
                       className="cv-download-btn cv-save-btn"
                       href="/portfolio%20combined%20final.jpg"
                       download="Aparna-S-Binu-Portfolio-CV.jpg"

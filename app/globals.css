@@ -330,6 +330,58 @@ h1 em {
   letter-spacing: -.04em;
 }
 
+/* Document actions under statement on homepage */
+.about-statement-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-doc-actions {
+  margin-top: 36px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+
+.about-doc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  padding: 13px 22px;
+  border: 1px solid var(--line);
+  background: transparent;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  min-width: 160px;
+}
+
+.about-doc-btn span {
+  color: var(--terracotta);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  font-size: 13px;
+  line-height: 1;
+  display: inline-block;
+}
+
+.about-doc-btn:hover {
+  border-color: var(--terracotta);
+  color: var(--terracotta);
+  background: rgba(196, 92, 59, 0.04);
+}
+
+.about-doc-btn.about-view-btn:hover span {
+  transform: translate(2px, -2px);
+}
+
 .about-notes {
   color: var(--muted);
   font-size: 14px;
@@ -898,6 +950,23 @@ h1 em {
   .statement {
     font-size: 38px;
     margin-bottom: 58px;
+  }
+
+  .about-statement-wrap .statement {
+    margin-bottom: 28px;
+  }
+
+  .about-doc-actions {
+    margin-top: 0;
+    margin-bottom: 50px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .about-doc-btn {
+    width: 100%;
+    min-width: 0;
   }
 
   .work-layout {

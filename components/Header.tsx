@@ -45,9 +45,24 @@ export default function Header({
       >
         <div className="mobile-nav-meta" aria-hidden="true">
           <span>Index</span>
-          <span>01—04</span>
+          <span>01—05</span>
         </div>
 
+        <Link
+          href="/"
+          className={pathname === '/' ? 'is-active' : ''}
+          aria-current={pathname === '/' ? 'page' : undefined}
+          onClick={(e) => {
+            closeMenu()
+            if (pathname === '/') {
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            }
+          }}
+          data-cursor="link"
+        >
+          <span className="nav-item-num" aria-hidden="true">01</span>
+          <span className="nav-item-text">Home</span>
+        </Link>
         <Link
           href="/work"
           className={pathname === '/work' || pathname?.startsWith('/work/') ? 'is-active' : ''}
@@ -55,7 +70,7 @@ export default function Header({
           onClick={closeMenu}
           data-cursor="link"
         >
-          <span className="nav-item-num" aria-hidden="true">01</span>
+          <span className="nav-item-num" aria-hidden="true">02</span>
           <span className="nav-item-text">Work</span>
         </Link>
         <Link
@@ -65,7 +80,7 @@ export default function Header({
           onClick={closeMenu}
           data-cursor="link"
         >
-          <span className="nav-item-num" aria-hidden="true">02</span>
+          <span className="nav-item-num" aria-hidden="true">03</span>
           <span className="nav-item-text">Archive</span>
         </Link>
         <Link
@@ -75,7 +90,7 @@ export default function Header({
           onClick={closeMenu}
           data-cursor="link"
         >
-          <span className="nav-item-num" aria-hidden="true">03</span>
+          <span className="nav-item-num" aria-hidden="true">04</span>
           <span className="nav-item-text">About</span>
         </Link>
         <Link
@@ -85,7 +100,7 @@ export default function Header({
           onClick={closeMenu}
           data-cursor="link"
         >
-          <span className="nav-item-num" aria-hidden="true">04</span>
+          <span className="nav-item-num" aria-hidden="true">05</span>
           <span className="nav-item-text">Contact</span>
         </Link>
 

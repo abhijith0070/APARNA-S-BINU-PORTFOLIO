@@ -36,7 +36,31 @@ export default function Page() {
         <section id="about" className="about section-rule" aria-labelledby="about-title">
           <div className="section-marker"><span>01</span><span id="about-title">About</span></div>
           <div className="about-content">
-            <p className="statement">I am a fourth-year architecture student drawn to spatial design, visual storytelling and the moments where the two meet.</p>
+            <div className="about-statement-wrap">
+              <p className="statement">I am a fourth-year architecture student drawn to spatial design, visual storytelling and the moments where the two meet.</p>
+              <div className="about-doc-actions">
+                <a
+                  className="about-doc-btn about-view-btn"
+                  href="/portfolio%20combined%20final.jpg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="view"
+                  title="View full portfolio and CV in a new tab"
+                >
+                  View CV <span aria-hidden="true">↗</span>
+                </a>
+                <a
+                  className="about-doc-btn about-view-btn"
+                  href="/APARNA_S_BINU_RESUME%20.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="view"
+                  title="View resume in a new tab"
+                >
+                  View Resume <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
             <div className="about-notes">
               <p>My process moves through research, observation and experimentation — with a growing fluency in BIM, visualization and digital modelling.</p>
               <p>Outside the studio, videography, classical dance, music, cinema and travel continue to shape how I see and design space.</p>
