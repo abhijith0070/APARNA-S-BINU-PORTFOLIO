@@ -77,7 +77,6 @@ export default function AboutPage() {
                 {/* Supporting profile image */}
                 <div className="cv-portrait-wrap" aria-label="Aparna S Binu portrait">
                   <div className="cv-portrait-frame">
-                    {/* Portrait: Replace /placeholder-user.jpg with Aparna's portrait when provided */}
                     <img
                       className="cv-portrait-img"
                       src="/img.jpg"

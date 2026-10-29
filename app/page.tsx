@@ -28,7 +28,7 @@ export default function Page() {
           </div>
           <div className="hero-image-wrap">
             <div className="hero-block" aria-hidden="true" />
-            <img className="hero-image" src="/portfolio 1.jpg" alt="Sculptural concrete architecture in warm evening light" />
+            <img className="hero-image" src="/main.jpeg" alt="Aparna S Binu" />
             <p className="image-caption">01 / The built world<br />as an invitation.</p>
           </div>
         </section>
