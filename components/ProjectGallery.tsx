@@ -480,7 +480,7 @@ export default function ProjectGallery({ project, items }: ProjectGalleryProps) 
                 <div
                   className="gallery-image-frame gallery-technical-frame gallery-masterplan-landscape"
                   style={{
-                    aspectRatio: '16 / 9',
+                    aspectRatio: campusMasterplan.aspectRatio || '1492 / 1054',
                     width: '100%',
                   }}
                   onClick={() => openLightbox(getItemIndex(campusMasterplan.src))}
