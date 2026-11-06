@@ -1,0 +1,575 @@
+/* ============================================================
+   PROJECT DETAIL PAGE & ARCHITECTURAL GALLERY STYLES
+   ============================================================ */
+
+.project-page-shell {
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.project-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 72px;
+  padding: 0 5vw;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.project-brand {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-decoration: none;
+  color: var(--ink);
+  transition: color 0.25s ease;
+}
+
+.project-brand:hover {
+  color: var(--terracotta);
+}
+
+.project-back-link {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--muted);
+  transition: color 0.25s ease, transform 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.project-back-link:hover {
+  color: var(--ink);
+  transform: translateX(-3px);
+}
+
+/* ─── Hero Container ─── */
+.project-container {
+  width: min(1320px, 90vw);
+  margin: 0 auto;
+  padding: 72px 0 100px;
+}
+
+.project-meta-eyebrow {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.project-num-badge {
+  font-family: 'CalistoMT', Georgia, serif;
+  font-size: 14px;
+  color: var(--terracotta);
+  letter-spacing: 0.08em;
+}
+
+.project-cat-badge {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.project-main-title {
+  font-family: 'CalistoMT', Georgia, serif;
+  font-size: clamp(42px, 7.5vw, 88px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 36px;
+  color: var(--ink);
+}
+
+/* ─── Hero Cover Image ─── */
+.project-hero-cover-wrap {
+  position: relative;
+  width: 100%;
+  background: #eae8e1;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  margin-bottom: 48px;
+  cursor: pointer;
+}
+
+.project-hero-cover-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 82vh;
+  object-fit: cover;
+  filter: saturate(0.96);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+}
+
+.project-hero-cover-wrap:hover .project-hero-cover-img {
+  transform: scale(1.015);
+  filter: saturate(1.02);
+}
+
+.project-hero-cover-tag {
+  position: absolute;
+  bottom: 18px;
+  right: 20px;
+  background: rgba(22, 22, 22, 0.78);
+  backdrop-filter: blur(8px);
+  color: #FBFAF7;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.project-hero-cover-tag span:first-child {
+  color: var(--terracotta);
+}
+
+/* ─── Project Metadata Grid ─── */
+.project-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 32px;
+  padding: 40px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.project-meta-col-label {
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.project-meta-col-val {
+  font-size: 15px;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+/* ─── Project Narrative Description ─── */
+.project-narrative-wrap {
+  padding: 48px 0 64px;
+}
+
+.project-narrative-text {
+  max-width: 680px;
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--ink);
+  margin: 0;
+}
+
+/* ============================================================
+   ARCHITECTURAL GALLERY
+   ============================================================ */
+.project-gallery-root {
+  display: flex;
+  flex-direction: column;
+  gap: 88px;
+  padding-top: 32px;
+}
+
+/* Section Header */
+.gallery-section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.gallery-section-num {
+  font-family: 'CalistoMT', Georgia, serif;
+  font-size: 13px;
+  color: var(--terracotta);
+  letter-spacing: 0.08em;
+}
+
+.gallery-section-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.gallery-section-title {
+  font-family: 'CalistoMT', Georgia, serif;
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.gallery-section-subtitle {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Paired 2-Column Grid */
+.gallery-pair-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+/* Architectural Card */
+.gallery-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: transparent;
+}
+
+.gallery-image-frame {
+  position: relative;
+  width: 100%;
+  background: #f7f6f2;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-image-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
+}
+
+.gallery-image-frame:hover img {
+  transform: scale(1.02);
+}
+
+.gallery-inspect-cue {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(251, 250, 247, 0.92);
+  backdrop-filter: blur(4px);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 5px 9px;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.gallery-image-frame:hover .gallery-inspect-cue {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gallery-card-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 2px 0 0;
+}
+
+.gallery-card-header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.gallery-card-num {
+  font-family: 'CalistoMT', Georgia, serif;
+  font-size: 11px;
+  color: var(--terracotta);
+  letter-spacing: 0.06em;
+}
+
+.gallery-card-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.gallery-card-desc {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Full Width & Technical Cards */
+.gallery-full-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.gallery-full-card .gallery-image-frame {
+  background: #faf9f5;
+}
+
+.gallery-full-card .gallery-image-frame img {
+  width: 100%;
+  height: auto;
+  max-height: 85vh;
+  object-fit: contain;
+}
+
+/* Technical Drawing Container Specifics */
+.gallery-technical-frame {
+  background: #ffffff !important;
+  border: 1px solid var(--line);
+  padding: 8px;
+}
+
+.gallery-technical-frame img {
+  width: 100%;
+  height: auto;
+  max-height: 85vh;
+  object-fit: contain;
+}
+
+/* ============================================================
+   ARCHITECTURAL LIGHTBOX / INSPECTOR
+   ============================================================ */
+.project-lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(16, 16, 15, 0.94);
+  backdrop-filter: blur(14px);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.project-lightbox-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.project-lightbox-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 4vw;
+  color: #FBFAF7;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  z-index: 20;
+}
+
+.project-lightbox-info {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.project-lightbox-counter {
+  font-family: ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: #e5876d;
+}
+
+.project-lightbox-title {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #FBFAF7;
+}
+
+.project-lightbox-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.project-lightbox-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FBFAF7;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.project-lightbox-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #FBFAF7;
+}
+
+.project-lightbox-close {
+  background: none;
+  border: none;
+  color: #FBFAF7;
+  font-size: 26px;
+  line-height: 1;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.project-lightbox-close:hover {
+  color: #e5876d;
+  transform: scale(1.1);
+}
+
+.project-lightbox-stage {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 4vw;
+  overflow: auto;
+}
+
+.project-lightbox-img-wrap {
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.project-lightbox-img {
+  display: block;
+  max-width: 90vw;
+  max-height: 78vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  background: #000000;
+}
+
+.project-lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(30, 30, 30, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #FBFAF7;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.25s ease;
+  z-index: 10;
+}
+
+.project-lightbox-nav:hover {
+  background: rgba(229, 135, 109, 0.85);
+  border-color: #e5876d;
+}
+
+.project-lightbox-prev {
+  left: 20px;
+}
+
+.project-lightbox-next {
+  right: 20px;
+}
+
+.project-lightbox-caption {
+  padding: 14px 4vw 20px;
+  color: rgba(251, 250, 247, 0.7);
+  font-size: 12px;
+  line-height: 1.6;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN
+   ============================================================ */
+@media (max-width: 960px) {
+  .gallery-pair-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .project-gallery-root {
+    gap: 64px;
+  }
+
+  .project-container {
+    padding: 56px 0 80px;
+  }
+}
+
+@media (max-width: 640px) {
+  .project-header {
+    min-height: 60px;
+    padding: 0 4vw;
+  }
+
+  .project-container {
+    width: 92vw;
+    padding: 40px 0 64px;
+  }
+
+  .project-main-title {
+    font-size: clamp(34px, 10vw, 48px);
+    margin-bottom: 24px;
+  }
+
+  .project-meta-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 28px 0;
+  }
+
+  .project-narrative-text {
+    font-size: 15px;
+  }
+
+  .gallery-section-header {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .project-lightbox-nav {
+    display: none;
+  }
+}
+

@@ -199,9 +199,9 @@ function FullscreenView() {
                 }}
               >
                 <p className="work-fs-disciplines">
-                  {project.disciplines.join(' / ')}
+                  {project.location} · {project.disciplines.join(' / ')}
                 </p>
-                <span className="work-fs-year">{project.year}</span>
+                <span className="work-fs-year">{project.semester}</span>
                 <span className="work-fs-counter">
                   {project.number} / {String(projects.length).padStart(2, '0')}
                 </span>
@@ -239,7 +239,7 @@ function GridView() {
             <span className="work-grid-number">{project.number}</span>
             <h3 className="work-grid-title">{project.title}</h3>
             <p className="work-grid-disciplines">
-              {project.disciplines.join(' / ')}
+              {project.location} · {project.semester}
             </p>
           </div>
         </Link>
@@ -333,9 +333,9 @@ function ListView() {
             <span className="work-list-num">{project.number}</span>
             <span className="work-list-title">{project.title}</span>
             <span className="work-list-disciplines">
-              {project.disciplines.join(' / ')}
+              {project.location}
             </span>
-            <span className="work-list-year">{project.year}</span>
+            <span className="work-list-year">{project.semester}</span>
             <span className="work-list-arrow" aria-hidden="true">↗</span>
           </Link>
         ))}

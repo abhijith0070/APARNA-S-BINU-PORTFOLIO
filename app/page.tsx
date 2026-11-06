@@ -80,7 +80,7 @@ export default function Page() {
                   data-cursor="view"
                   onMouseEnter={() => setActiveProject(project)}
                   onFocus={() => setActiveProject(project)}
-                  aria-label={`${project.number} ${project.title} — ${project.category} (${project.year})`}
+                  aria-label={`${project.number} ${project.title} — ${project.location} · ${project.category} (${project.semester})`}
                 >
                   {/* Mobile-only architectural project card image */}
                   <div className="project-card-image-wrap">
@@ -98,9 +98,9 @@ export default function Page() {
                       <span>{project.title}</span>
                       <span className="project-mobile-arrow" aria-hidden="true">↗</span>
                     </strong>
-                    <small>{project.category}</small>
+                    <small>{project.location} · {project.category}</small>
                   </div>
-                  <span className="project-year">{project.year}</span>
+                  <span className="project-year">{project.semester}</span>
                   <span className="project-arrow" aria-hidden="true">↗</span>
                 </Link>
               ))}

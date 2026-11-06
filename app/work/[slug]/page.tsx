@@ -2,6 +2,9 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { projects } from '@/lib/projects'
 import type { Metadata } from 'next'
+import ProjectGallery from '@/components/ProjectGallery'
+import ThemeToggle from '@/components/ThemeToggle'
+import './project.css'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -29,165 +32,103 @@ export default async function ProjectPage({ params }: PageProps) {
     notFound()
   }
 
+  const hasGallery = Boolean(project.gallery && project.gallery.length > 0)
+
   return (
-    <main style={{
-      minHeight: '100vh',
-      background: 'var(--paper)',
-      color: 'var(--ink)',
-    }}>
+    <main className="project-page-shell">
       {/* Minimal header */}
-      <header style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        minHeight: '72px',
-        padding: '0 5vw',
-        borderBottom: '1px solid var(--line)',
-      }}>
-        <Link href="/" style={{
-          fontSize: '11px',
-          fontWeight: 700,
-          letterSpacing: '0.16em',
-          textDecoration: 'none',
-          color: 'var(--ink)',
-        }}>
+      <header className="project-header">
+        <Link href="/" className="project-brand" data-cursor="link">
           APARNA S BINU
         </Link>
-        <Link href="/work" style={{
-          fontSize: '10px',
-          letterSpacing: '0.12em',
-          textTransform: 'uppercase' as const,
-          textDecoration: 'none',
-          color: 'var(--muted)',
-        }}>
-          ← Back to Work
-        </Link>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+          <ThemeToggle />
+          <Link href="/work" className="project-back-link" data-cursor="link">
+            ← Back to Work
+          </Link>
+        </div>
       </header>
 
-      {/* Project hero */}
-      <div style={{
-        width: 'min(1320px, 90vw)',
-        margin: '0 auto',
-        padding: '80px 0',
-      }}>
-        <div style={{
-          display: 'flex',
-          alignItems: 'baseline',
-          gap: '16px',
-          marginBottom: '16px',
-        }}>
-          <span style={{
-            fontFamily: "'CalistoMT', Georgia, serif",
-            fontSize: '13px',
-            color: 'var(--terracotta)',
-            letterSpacing: '0.06em',
-          }}>
+      {/* Project container */}
+      <div className="project-container">
+        {/* Eyebrow & Number */}
+        <div className="project-meta-eyebrow">
+          <span className="project-num-badge">
             {project.number}
           </span>
-          <span style={{
-            fontSize: '10px',
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase' as const,
-            color: 'var(--muted)',
-          }}>
+          <span className="project-cat-badge">
             {project.category}
           </span>
         </div>
 
-        <h1 style={{
-          fontFamily: "'CalistoMT', Georgia, serif",
-          fontSize: 'clamp(40px, 7vw, 88px)',
-          fontWeight: 400,
-          lineHeight: 1.05,
-          letterSpacing: '-0.02em',
-          margin: '0 0 40px',
-        }}>
+        {/* Project Title */}
+        <h1 className="project-main-title">
           {project.title}
         </h1>
 
-        {/* Hero image */}
-        <div style={{
-          width: '100%',
-          aspectRatio: '16 / 9',
-          overflow: 'hidden',
-          background: '#f0efe9',
-        }}>
+        {/* Main Cover / Hero Image */}
+        <div
+          className="project-hero-cover-wrap"
+          style={{
+            aspectRatio: project.imageAspectRatio || '16 / 9',
+          }}
+          data-cursor="view"
+        >
           <img
             src={project.image}
             alt={project.title}
+            className="project-hero-cover-img"
             style={{
-              display: 'block',
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              filter: 'saturate(0.88)',
+              objectPosition: project.imagePosition || 'center',
             }}
           />
+          {hasGallery && (
+            <div className="project-hero-cover-tag">
+              <span>01</span>
+              <span>Exterior Render</span>
+            </div>
+          )}
         </div>
 
         {/* Project metadata */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-          gap: '32px',
-          padding: '48px 0',
-          borderBottom: '1px solid var(--line)',
-        }}>
+        <div className="project-meta-grid">
           <div>
-            <div style={{
-              fontSize: '9px',
-              letterSpacing: '0.14em',
-              textTransform: 'uppercase' as const,
-              color: 'var(--muted)',
-              marginBottom: '6px',
-            }}>Year</div>
-            <div style={{ fontSize: '14px' }}>{project.year}</div>
+            <div className="project-meta-col-label">Academic Period</div>
+            <div className="project-meta-col-val">{project.semester}</div>
           </div>
           <div>
-            <div style={{
-              fontSize: '9px',
-              letterSpacing: '0.14em',
-              textTransform: 'uppercase' as const,
-              color: 'var(--muted)',
-              marginBottom: '6px',
-            }}>Location</div>
-            <div style={{ fontSize: '14px' }}>{project.location}</div>
+            <div className="project-meta-col-label">Location</div>
+            <div className="project-meta-col-val">{project.location}</div>
           </div>
           <div>
-            <div style={{
-              fontSize: '9px',
-              letterSpacing: '0.14em',
-              textTransform: 'uppercase' as const,
-              color: 'var(--muted)',
-              marginBottom: '6px',
-            }}>Disciplines</div>
-            <div style={{ fontSize: '14px' }}>{project.disciplines.join(', ')}</div>
+            <div className="project-meta-col-label">Disciplines</div>
+            <div className="project-meta-col-val">{project.disciplines.join(', ')}</div>
           </div>
         </div>
 
-        {/* Description */}
-        <p style={{
-          maxWidth: '640px',
-          fontSize: '16px',
-          lineHeight: 1.7,
-          color: 'var(--ink)',
-          padding: '48px 0',
-        }}>
-          {project.description}
-        </p>
-
-        {/* Placeholder for full project content */}
-        <div style={{
-          padding: '60px 0',
-          textAlign: 'center' as const,
-          color: 'var(--muted)',
-          fontSize: '11px',
-          letterSpacing: '0.14em',
-          textTransform: 'uppercase' as const,
-          borderTop: '1px solid var(--line)',
-        }}>
-          Full project documentation coming soon
+        {/* Project Narrative Description */}
+        <div className="project-narrative-wrap">
+          <p className="project-narrative-text">
+            {project.description}
+          </p>
         </div>
+
+        {/* Architectural Image Gallery or placeholder */}
+        {hasGallery && project.gallery ? (
+          <ProjectGallery project={project} items={project.gallery} />
+        ) : (
+          <div style={{
+            padding: '60px 0',
+            textAlign: 'center' as const,
+            color: 'var(--muted)',
+            fontSize: '11px',
+            letterSpacing: '0.14em',
+            textTransform: 'uppercase' as const,
+            borderTop: '1px solid var(--line)',
+          }}>
+            Full project documentation coming soon
+          </div>
+        )}
       </div>
 
       {/* Footer */}
