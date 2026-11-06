@@ -3,34 +3,6 @@
    Three-mode project presentation: Fullscreen · Grid · List
    ============================================================ */
 
-/* ─── Font face (reuse existing Calisto MT) ─── */
-@font-face {
-  font-family: 'CalistoMT';
-  src: url('/fonts/CalistoMT.woff2') format('woff2'),
-       url('/fonts/CalistoMT.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'CalistoMT';
-  src: url('/fonts/CalistoMT-Italic.woff2') format('woff2'),
-       url('/fonts/CalistoMT-Italic.woff') format('woff');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'CalistoMT';
-  src: url('/fonts/CalistoMT-Bold.woff2') format('woff2'),
-       url('/fonts/CalistoMT-Bold.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
 /* ─── Page shell ─── */
 .work-page {
   min-height: 100vh;
@@ -265,7 +237,7 @@
 }
 
 .work-fs-number {
-  font-family: 'CalistoMT', Georgia, serif;
+  font-family: 'Calisto MT', Georgia, 'Times New Roman', serif;
   font-size: 14px;
   letter-spacing: 0.08em;
   color: #e5876d;
@@ -273,7 +245,7 @@
 }
 
 .work-fs-title {
-  font-family: 'CalistoMT', Georgia, serif;
+  font-family: 'Calisto MT', Georgia, 'Times New Roman', serif;
   font-size: clamp(36px, 5.8vw, 76px);
   font-weight: 400;
   line-height: 1.05;
@@ -385,14 +357,14 @@
 }
 
 .work-grid-number {
-  font-family: 'CalistoMT', Georgia, serif;
+  font-family: 'Calisto MT', Georgia, 'Times New Roman', serif;
   font-size: 11px;
   letter-spacing: 0.06em;
   color: var(--terracotta);
 }
 
 .work-grid-title {
-  font-family: 'CalistoMT', Georgia, serif;
+  font-family: 'Calisto MT', Georgia, 'Times New Roman', serif;
   font-size: clamp(22px, 2.5vw, 32px);
   font-weight: 400;
   line-height: 1.2;
@@ -500,14 +472,14 @@
 }
 
 .work-list-num {
-  font-family: 'CalistoMT', Georgia, serif;
+  font-family: 'Calisto MT', Georgia, 'Times New Roman', serif;
   font-size: 12px;
   color: var(--terracotta);
   letter-spacing: 0.04em;
 }
 
 .work-list-title {
-  font-family: 'CalistoMT', Georgia, serif;
+  font-family: 'Calisto MT', Georgia, 'Times New Roman', serif;
   font-size: clamp(18px, 2vw, 26px);
   font-weight: 400;
   letter-spacing: -0.01em;

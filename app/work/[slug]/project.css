@@ -66,7 +66,7 @@
 }
 
 .project-num-badge {
-  font-family: 'CalistoMT', Georgia, serif;
+  font-family: 'Calisto MT', Georgia, 'Times New Roman', serif;
   font-size: 14px;
   color: var(--terracotta);
   letter-spacing: 0.08em;
@@ -80,7 +80,7 @@
 }
 
 .project-main-title {
-  font-family: 'CalistoMT', Georgia, serif;
+  font-family: 'Calisto MT', Georgia, 'Times New Roman', serif;
   font-size: clamp(42px, 7.5vw, 88px);
   font-weight: 400;
   line-height: 1.05;
@@ -194,7 +194,7 @@
 }
 
 .gallery-section-num {
-  font-family: 'CalistoMT', Georgia, serif;
+  font-family: 'Calisto MT', Georgia, 'Times New Roman', serif;
   font-size: 13px;
   color: var(--terracotta);
   letter-spacing: 0.08em;
@@ -207,7 +207,7 @@
 }
 
 .gallery-section-title {
-  font-family: 'CalistoMT', Georgia, serif;
+  font-family: 'Calisto MT', Georgia, 'Times New Roman', serif;
   font-size: clamp(20px, 2.4vw, 28px);
   font-weight: 400;
   letter-spacing: -0.01em;
@@ -302,7 +302,7 @@
 }
 
 .gallery-card-num {
-  font-family: 'CalistoMT', Georgia, serif;
+  font-family: 'Calisto MT', Georgia, 'Times New Roman', serif;
   font-size: 11px;
   color: var(--terracotta);
   letter-spacing: 0.06em;
