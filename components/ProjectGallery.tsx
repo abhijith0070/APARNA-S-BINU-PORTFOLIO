@@ -478,11 +478,10 @@ export default function ProjectGallery({ project, items }: ProjectGalleryProps) 
 
               <article className="gallery-full-card">
                 <div
-                  className="gallery-image-frame gallery-technical-frame"
+                  className="gallery-image-frame gallery-technical-frame gallery-masterplan-landscape"
                   style={{
-                    aspectRatio: campusMasterplan.aspectRatio || '1054 / 1492',
-                    maxHeight: '85vh',
-                    margin: '0 auto',
+                    aspectRatio: '16 / 9',
+                    width: '100%',
                   }}
                   onClick={() => openLightbox(getItemIndex(campusMasterplan.src))}
                   data-cursor="view"
@@ -492,7 +491,7 @@ export default function ProjectGallery({ project, items }: ProjectGalleryProps) 
                     alt={campusMasterplan.alt}
                     loading="lazy"
                     onError={() => handleImageError(campusMasterplan.id)}
-                    style={{ objectFit: 'contain' }}
+                    style={{ objectFit: 'contain', width: '100%', height: '100%' }}
                   />
                   <div className="gallery-inspect-cue">
                     <span>Inspect Master Plan Drawing</span>

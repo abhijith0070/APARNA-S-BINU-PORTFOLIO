@@ -108,7 +108,7 @@ export default function AboutPage() {
                   <div className="cv-portrait-frame">
                     <img
                       className="cv-portrait-img"
-                      src="/img.jpg"
+                      src="/IMG.jpeg"
                       alt="Aparna S Binu"
                     />
                   </div>
