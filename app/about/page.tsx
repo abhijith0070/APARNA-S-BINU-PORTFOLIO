@@ -81,6 +81,25 @@ export default function AboutPage() {
                     >
                       Download CV <span aria-hidden="true">↓</span>
                     </a>
+                    <a
+                      className="cv-download-btn cv-view-btn"
+                      href="/APARNA%20S%20BINU%20PORTFOLIO.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-cursor="view"
+                      title="View portfolio PDF in a new tab"
+                    >
+                      View Portfolio <span aria-hidden="true">↗</span>
+                    </a>
+                    <a
+                      className="cv-download-btn cv-save-btn"
+                      href="/APARNA%20S%20BINU%20PORTFOLIO.pdf"
+                      download="APARNA S BINU PORTFOLIO.pdf"
+                      data-cursor="open"
+                      title="Download portfolio PDF"
+                    >
+                      Download Portfolio <span aria-hidden="true">↓</span>
+                    </a>
                   </div>
                 </div>
 

@@ -59,6 +59,16 @@ export default function Page() {
                 >
                   View Resume <span aria-hidden="true">↗</span>
                 </a>
+                <a
+                  className="about-doc-btn about-view-btn"
+                  href="/APARNA%20S%20BINU%20PORTFOLIO.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor="view"
+                  title="View portfolio PDF in a new tab"
+                >
+                  View Portfolio <span aria-hidden="true">↗</span>
+                </a>
               </div>
             </div>
             <div className="about-notes">
